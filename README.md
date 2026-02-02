@@ -17,5 +17,5 @@ A minimal focus-oriented to-do list built with vanilla JavaScript.
 
 ## Live Demo
 
-[(pon el link de GitHub Pages)](https://glunmygrims.github.io/Focus-To-Do-List/)
+Here! (https://glunmygrims.github.io/Focus-To-Do-List/)
 
