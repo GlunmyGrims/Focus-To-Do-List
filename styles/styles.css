@@ -1,0 +1,406 @@
+/* =========================
+   ROOT & THEME
+   ========================= */
+
+:root {
+  /* Backgrounds */
+  --bg-primary: #f4f4f4;
+
+  /* Text */
+  --text-focus: #000000;
+  --text-muted: #b2b2b2;
+
+  /* Progress */
+  --progress-fill: #5fce6a;
+  --progress-bg: #b2b2b2;
+
+  /* Accents */
+  --accent-primary: #5fce6a;
+
+  /* Typography */
+  --font-family: "Montserrat", sans-serif;
+
+  --fw-bold: 700;
+  --fw-medium: 500;
+  --fw-light: 300;
+  --fw-thin: 100;
+
+  --fs-title: 2rem;
+  --fs-task: 1.2rem;
+  --fs-subtask: 0.8rem;
+  --fs-percentage: 1.5rem;
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+
+  /* Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 30px;
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+}
+
+/* =========================
+   BASE RESET
+   ========================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background-color: #eaeaea;
+  transition: background-color var(--transition-normal);
+}
+
+/* =========================
+   TYPO RESET
+   ========================= */
+
+h1,
+h2,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+/* =========================
+   LISTS & BUTTONS
+   ========================= */
+
+ul {
+  list-style: none;
+  padding: 10px 0;
+  margin: 0;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0;
+  color: inherit;
+}
+
+/* =========================
+   APP
+   ========================= */
+
+.app__header {
+  text-align: center;
+  width: 100%;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* =========================
+   TASK LIST
+   ========================= */
+
+.task-list {
+  background-color: var(--bg-primary);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 28%;
+  min-height: 250px;
+  margin: 10px;
+  border-radius: var(--radius-lg);
+  transition: box-shadow var(--transition-normal);
+}
+
+.task-list:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.task-list__footer {
+  padding: 5px 0;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  font-weight: var(--fw-light);
+}
+
+/* =========================
+   PROGRESS
+   ========================= */
+
+.progress--global {
+  background: var(--progress-bg);
+  height: 5px;
+  margin: 12px 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  width: 100%;
+}
+
+.progress__bar {
+  background-color: var(--progress-fill);
+  height: 5px;
+  width: 80%;
+  border-radius: var(--radius-lg);
+  transition: width var(--transition-normal);
+}
+
+/* =========================
+   TEXT SILENCED BY DEFAULT
+   ========================= */
+
+.task,
+.subtask {
+  color: var(--text-muted);
+}
+
+/* =========================
+   TASK
+   ========================= */
+
+.task {
+  margin-bottom: var(--space-md);
+}
+
+.task__main {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.task__title {
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-task);
+  transition: color var(--transition-fast);
+}
+
+/* =========================
+   TASK ACTIVE (FOCUS)
+   ========================= */
+
+.task--active {
+  color: var(--text-focus);
+}
+
+.task--active::before {
+  content: "";
+  position: absolute;
+  left: -8px;
+  width: 3px;
+  height: 100%;
+  background: var(--accent-primary);
+  border-radius: 2px;
+}
+
+.task--active .task__title {
+  color: var(--text-focus);
+}
+
+/* =========================
+   TASK COMPLETED
+   ========================= */
+
+.task--completed .task__title {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+/* =========================
+   ICONS
+   ========================= */
+
+.task__toggle {
+  cursor: pointer;
+  transition: opacity var(--transition-fast);
+}
+
+.task__toggle:hover {
+  opacity: 0.7;
+}
+
+.task__check {
+  cursor: pointer;
+}
+
+.task__icon,
+.subtask__icon {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.task__icon--checked,
+.subtask__icon--checked {
+  display: none;
+}
+
+/* Hover preview */
+.task__check:hover .task__icon--unchecked,
+.subtask__check:hover .subtask__icon--unchecked {
+  display: none;
+}
+
+.task__check:hover .task__icon--checked,
+.subtask__check:hover .subtask__icon--checked {
+  display: inline-block;
+}
+
+/* Completed icons */
+.task--completed .task__icon--unchecked,
+.subtask--completed .subtask__icon--unchecked {
+  display: none;
+}
+
+.task--completed .task__icon--checked,
+.subtask--completed .subtask__icon--checked {
+  display: inline-block;
+}
+
+/* =========================
+   SUBTASKS
+   ========================= */
+
+.subtask-list {
+  padding-left: 20px;
+}
+
+.subtask {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xs);
+}
+
+.subtask__title {
+  font-size: var(--fs-subtask);
+  font-weight: var(--fw-medium);
+  transition: color var(--transition-fast);
+}
+
+/* Subtasks follow task focus */
+.task--active .subtask__title {
+  color: var(--text-focus);
+}
+
+/* Subtask completed */
+.subtask--completed .subtask__title {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+/* =========================
+   ADD BUTTONS
+   ========================= */
+
+.subtask-list__add-btn {
+  font-family: var(--font-family);
+  font-weight: var(--fw-medium);
+  color: var(--text-muted);
+  transition: color var(--transition-fast);
+}
+
+.subtask-list__add-btn:hover {
+  color: var(--text-focus);
+}
+
+.task-list__add-btn-1 {
+  display: flex;
+  font-family: var(--font-family);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-task);
+  color: var(--text-muted);
+  transition: color var(--transition-fast);
+}
+
+.task-list__add-btn-1:hover {
+  color: var(--text-focus);
+}
+
+.task-list__add-btn-2 {
+  color: var(--progress-bg);
+  font-size: var(--fs-task);
+  background: var(--bg-primary);
+  padding: 10px 12px;
+  border-radius: var(--radius-lg);
+  transition:
+    background-color var(--transition-normal),
+    color var(--transition-normal),
+    transform var(--transition-fast);
+}
+
+.task-list__add-btn-2:hover {
+  background-color: var(--accent-primary);
+  color: white;
+  transform: scale(1.05);
+}
+
+.subtask-list {
+  display: none;
+}
+
+.subtask-list--expanded {
+  display: block;
+}
+
+.add-objective {
+  display: flex;
+  justify-content: center;
+  margin: var(--space-lg) 0;
+}
+
+.task-list__add-btn-2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =========================
+   NIGHT MODE
+   ========================= */
+
+body.theme--night {
+  --bg-primary: #161824;
+
+  --text-focus: #e9e9ff;
+  --text-muted: #6f6bbd;
+
+  --progress-fill: #9556eb;
+  --progress-bg: #3b3089;
+
+  --accent-primary: #9556eb;
+
+  background-color: #0f1020;
+}
+
+.theme-toggle {
+  margin-left: var(--space-md);
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  transition:
+    color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.theme-toggle:hover {
+  color: var(--text-focus);
+  transform: rotate(-10deg);
+}
+
+body.theme--night .theme-toggle i {
+  color: var(--accent-primary);
+}
